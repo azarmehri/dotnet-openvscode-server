@@ -8,8 +8,10 @@ RUN apt-get update && apt-get install -y curl
 RUN mkdir -p /home/.dotnet && curl -fsSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --install-dir /home/.dotnet
 ENV PATH=/home/.dotnet:$PATH
 
+RUN apt-get install -y libicu60
+
 # https://github.com/nodesource/distributions/blob/master/README.md
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-RUN sudo apt-get install -y nodejs
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash
+RUN apt-get install -y nodejs
 
 USER openvscode-server
